@@ -53,7 +53,7 @@ async function cleanup() {
       }
     }
     */
-    io.rmRF("~/.docker");
+    await io.rmRF(process.env.HOME + "/.docker");
   }
   catch (error) {
     core.setFailed(error.message);
