@@ -6,6 +6,7 @@
 
 const core = __nccwpck_require__(186);
 const exec = __nccwpck_require__(514);
+const io = __nccwpck_require__(436);
 
 /**
  * When the GitHub Actions job is done, remove saved ECR credentials from the
@@ -14,6 +15,7 @@ const exec = __nccwpck_require__(514);
 
 async function cleanup() {
   try {
+    /*
     const registriesState = core.getState('registries');
 
     if (registriesState) {
@@ -50,6 +52,8 @@ async function cleanup() {
         throw new Error(`Failed to logout: ${failedLogouts.join(',')}`);
       }
     }
+    */
+    io.rmRF("~/.docker");
   }
   catch (error) {
     core.setFailed(error.message);

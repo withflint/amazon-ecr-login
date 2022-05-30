@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
+const io = require('@actions/io');
 
 /**
  * When the GitHub Actions job is done, remove saved ECR credentials from the
@@ -8,6 +9,7 @@ const exec = require('@actions/exec');
 
 async function cleanup() {
   try {
+    /*
     const registriesState = core.getState('registries');
 
     if (registriesState) {
@@ -44,6 +46,8 @@ async function cleanup() {
         throw new Error(`Failed to logout: ${failedLogouts.join(',')}`);
       }
     }
+    */
+    io.rmRF("~/.docker");
   }
   catch (error) {
     core.setFailed(error.message);
